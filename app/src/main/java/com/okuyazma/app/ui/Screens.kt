@@ -72,7 +72,8 @@ fun HomeScreen(store: Store, speaker: Speaker, onOpen: (Section) -> Unit, onPare
         }
     }
 }
-
+store.setGoal(g) → store.updateGoal(g)
+store.setUnlockAll(it) → store.updateUnlockAll(it)
 @Composable
 private fun SectionCard(
     modifier: Modifier, emoji: String, title: String, sub: String, locked: Boolean,
