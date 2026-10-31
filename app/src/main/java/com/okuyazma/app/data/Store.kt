@@ -48,7 +48,7 @@ class Store(ctx: Context) {
     fun setMic(v: Boolean) { micOn = v; p.edit().putBoolean("mic", v).apply() }
     fun setTheme(v: Int) { themeMode = v; p.edit().putInt("theme", v).apply() }
     fun setUnlockAll(v: Boolean) { unlockAll = v; p.edit().putBoolean("unlock", v).apply() }
-
+     fun setUnlockAll(v: Boolean) { → fun updateUnlockAll(v: Boolean) {
     fun reset() {
         done = emptySet(); totalStars = 0; todayStars = 0
         p.edit().remove("done").remove("stars").remove("day").remove("dayStars").apply()
