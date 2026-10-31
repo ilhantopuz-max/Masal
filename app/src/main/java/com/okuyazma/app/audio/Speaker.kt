@@ -47,7 +47,7 @@ class Speaker(private val ctx: Context) {
         val id = if (key != null) ctx.resources.getIdentifier(key, "raw", ctx.packageName) else 0
         if (id != 0) {
             player = MediaPlayer.create(ctx, id)?.apply {
-                setOnCompletionListener { try { it.release() } catch (_: Exception) {} }
+                setOnCompletionListener { try { it.release() } catch (e: Exception) {} }
                 start()
             }
         } else {
@@ -66,12 +66,12 @@ class Speaker(private val ctx: Context) {
             val tg = ToneGenerator(AudioManager.STREAM_MUSIC, 60)
             tg.startTone(ToneGenerator.TONE_PROP_ACK, 250)
             Handler(Looper.getMainLooper()).postDelayed({ tg.release() }, 600)
-        } catch (_: Exception) {}
+        } catch (e: Exception) {}
     }
 
     fun stop() {
         tts?.stop()
-        try { player?.release() } catch (_: Exception) {}
+        try { player?.release() } catch (e: Exception) {}
         player = null
     }
 
@@ -113,7 +113,7 @@ class Reader(private val ctx: Context) {
     }
 
     fun stop() {
-        try { rec?.destroy() } catch (_: Exception) {}
+        try { rec?.destroy() } catch (e: Exception) {}
         rec = null
         listening = false
     }
